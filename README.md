@@ -1,8 +1,8 @@
-# ScriptHub
+# ScriptHub Fork
 
-A basic powershell tool with some powerful functions.
+For users who want to run simple scripts, to changing the background on a unlicenced Windows, ScriptHub is there for you. This fork allows for a more convient and enchanced experience (No major changes to the original yet, project just started)
 
-## What Can ScriptHub do?
+# What Can ScriptHub do?
 
 It can:
 - Change Backgrounds
@@ -10,25 +10,15 @@ It can:
 - Allow you to make custom shortcuts
 - Update It's Self (Still slightly developmental)
 
-## What Feautres Are Coming To ScriptHub?
+# What Features Are New?
+
+Nothing yet, check back later
+
+# What Feautres Are Coming To This Fork Of ScriptHub?
 
 Scripthub will soon be introducing the following features:
 
-- ~~Updater Inside The Application~~
-- ~~Custom Shortcuts~~
-- ~~Renaming Shortcuts~~
-- ~~Better Start Function~~
-- Reverting Versions
-- Better UI
-- *Custom UI?*
-- Better Outside Modularity, Allowing For Users To Make Their Own Scripts
-- Code Rework For A Cleaner Code
-- LOTS Of Bug Fixes
-
-## The ScriptHub Website
-
-The official ScriptHub website can be found [here](https://scripthub.helpmegame.com)
-
-## Disclaimer
-
-**The ScriptHub Develompnet Team is not responisble for *ANYTHING* you do with ScriptHub.**
+- Disabling start menu web search
+- Make more scripts installable via repo links
+    - Make ScriptHub not rely entirly on local files or folders
+- Runnable via one command, no download needed
