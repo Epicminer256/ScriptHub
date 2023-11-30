@@ -1,22 +1,16 @@
 # When forking or updating, change these settings
-$Version = "Prerelease v0.0.0"
+$local:Version = "Prerelease v0.0.0"
 
+# API Variables
+$local:SH_Path = $PSScriptRoot
 
 $updateError = 0
 
-function Get-ScriptDirectory {
-    Split-Path -parent $PSCommandPath
-}
 
-#cls
-
-Function Start-ScriptHub{
-
-#Get the script location
-$localLocation = Get-ScriptDirectory
+Function private:Start-ScriptHub{
 
 #Set the location
-Set-Location $localLocation
+Set-Location $SH_Path
 
 #cls
 
@@ -49,7 +43,7 @@ echo 'Where Would You Like To Go? (Type The Number Of Where You Would Like To Go
 5) Update (Non-functional)
 '
 
-$Select = Read-Host
+$private:Select = Read-Host
 
 if ($Select -eq '1')
 {
