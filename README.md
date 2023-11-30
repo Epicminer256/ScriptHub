@@ -4,11 +4,7 @@ For users who want to run simple scripts, to changing the background on a unlice
 
 # What Can ScriptHub do?
 
-It can:
-- Change Backgrounds
-- Enable / Disable Darkmode
-- Allow you to make custom shortcuts
-- Update It's Self (Still slightly developmental)
+Right now, this version is non-functional as it is in development
 
 # What Features Are New?
 
@@ -18,7 +14,8 @@ Nothing yet, check back later
 
 Scripthub will soon be introducing the following features:
 
-- Disabling start menu web search
+- Remakes of original tools
+- New tools
+    - Disabling start menu web search
 - Make more scripts installable via repo links
-    - Make ScriptHub not rely entirly on local files or folders
 - Runnable via one command, no download needed

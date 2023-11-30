@@ -4,7 +4,7 @@ $Version = "Prerelease v0.0.0"
 # API Variables
 $SH_Path = $PSScriptRoot # Note, this may not have ScriptHub in it
 $SH_DataPath = Join-Path -Path $SH_Path -ChildPath "Data"
-$SH_ThemePath = Join-Path -Path $SH_DataPath -ChildPath "Theme"
+$SH_ThemePath = Join-Path -Path $SH_DataPath -ChildPath "Themes"
 $SH_DefaultTheme = Join-Path -Path $SH_ThemePath -ChildPath "default.psm1"
 
 # Private Internal Variables
@@ -12,9 +12,9 @@ $SH_DefaultTheme = Join-Path -Path $SH_ThemePath -ChildPath "default.psm1"
 function SHStart{
     Try
     {
-        Import-Module -Force -Verbose $SH_DefaultTheme 
-        get-command SHPrint -ErrorAction Stop
-        get-command SHInput -ErrorAction Stop
+        Import-Module -Force $SH_DefaultTheme -Function SHPrint, SHInput
+        get-command SHPrint -ErrorAction Stop | out-null
+        get-command SHInput -ErrorAction Stop | out-null
     }
     Catch
     {
@@ -58,10 +58,8 @@ function SHStart{
 
     Set-Location $SH_Path
 
-    echo 'Where Would You Like To Go? (Type The Number Of Where You Would Like To Go To)
-    1) Background
-    2) Dark Mode
-    3) Shortcuts
+    echo '
+    Program is WIP, come back later for a working version
     '
 
     $Select = SHInput
