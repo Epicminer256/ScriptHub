@@ -1,29 +1,8 @@
-#----------------------------------------------------#
-#    _____           _       _   _    _       _      #
-#   / ____|         (_)     | | | |  | |     | |     #
-#  | (___   ___ _ __ _ _ __ | |_| |__| |_   _| |__   #
-#   \___ \ / __| '__| | '_ \| __|  __  | | | | '_ \  #
-#   ____) | (__| |  | | |_) | |_| |  | | |_| | |_) | #
-#  |_____/ \___|_|  |_| .__/ \__|_|  |_|\__,_|_.__/  #
-#                     | |                            #
-#                     |_|                            #
-#----------------------------------------------------#
+# When forking or updating, change these settings
+$Version = "Prerelease v0.0.0"
 
-#$error = 0
+
 $updateError = 0
-
-#Set verison file directory
-$VersionDir = '.\version'
-
-#Check if version file exists
-if (Test-Path $VersionDir -PathType leaf)
-{
-$Version = Get-Content -Path $VersionDir
-} else
-{
-$Version = "Unkown"
-}
-
 
 function Get-ScriptDirectory {
     Split-Path -parent $PSCommandPath
@@ -65,9 +44,9 @@ Write-Host "Created by HelpMeGame with help from SCR33M `n" -fore Green
 echo 'Where Would You Like To Go? (Type The Number Of Where You Would Like To Go To)
 1) Background
 2) Dark Mode
-3) Update Log
+3) Update Log (Non-functional)
 4) Shortcuts
-5) Update
+5) Update (Non-functional)
 '
 
 $Select = Read-Host
@@ -87,7 +66,7 @@ if ($Select -eq '1')
             & .\Shortcuts\Shortcuts.ps1
             } elseif($Select -eq '5')
                 {
-                & .\Update\Update.ps1
+                & .\Update\Update.ps1 $($version)
                 } elseif ($Select -eq 'Incognito')
                     {
                     & .\Incognito\Incognito.ps1

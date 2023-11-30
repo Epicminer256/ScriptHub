@@ -18,17 +18,9 @@ Set-Location $CurrentDir
 #Go up in directory
 $MainDir = Split-Path -Path $CurrentDir -Parent
 
-#Set verison file directory
-$VersionDir = "$($MainDir)\version"
+#Set verison
+$Version = $args[0]
 
-#Check if version file exists
-if (Test-Path $VersionDir -PathType leaf)
-{
-$Version = Get-Content -Path $VersionDir
-} else
-{
-$Version = "Unkown"
-}
 
 function CheckForUpdate {
     cls
@@ -37,7 +29,7 @@ function CheckForUpdate {
     Set-Location $CurrentDir
 
     #Set the uri for the latest release
-    $URI = "https://api.github.com/repos/HelpMeGame/ScriptHub/releases/latest"
+    $URI = "https://api.github.com/repos/Epicminer256/ScriptHub/releases/latest"
 
     #Gets latest release tag
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
@@ -45,7 +37,7 @@ function CheckForUpdate {
     
     if ($ReleaseTag -gt $Version) {
         Write-Host "New version available! Would you like to update?"
-        $YN = Read-Host “[Y] Yes [N] No”
+        $YN = Read-Host ï¿½[Y] Yes [N] Noï¿½
         if ($YN -eq 'y' -or $YN -eq 'Y') {
             Update
         } elseif ($YN -eq 'n' -or $YN -eq 'N') {
@@ -56,7 +48,7 @@ function CheckForUpdate {
     } else
     {
         Write-Host "Latest Update [$($ReleaseTag)] already installed!"
-        read-host “Press ENTER to continue...”
+        read-host ï¿½Press ENTER to continue...ï¿½
         & .\Update.ps1
     }
 }
