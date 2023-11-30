@@ -20,22 +20,24 @@ function SHStart{
     {
         function SHPrint
         {
+            # A Long way of making a array
+            $Finalout = New-Object System.Collections.Generic.List[System.Object]
             for ( $i = 0; $i -lt $args.count; $i++ )
             {
-                Write-Host $args[$i]
+                $Finalout.add($args[$i])
             }
+            Write-Host $Finalout
         }
         function SHInput
         {
+            # A Long way of making a array
+            $Finalout = New-Object System.Collections.Generic.List[System.Object]
             for ( $i = 0; $i -lt $args.count; $i++ )
             {
-                Write-Host -NoNewline ($args[$i] + ">")
-                return $Host.UI.ReadLine()
+                $Finalout.add($args[$i])
             }
-            if ($args.count -lt 1) {
-                Write-Host -NoNewline ">"
-                return $Host.UI.ReadLine()
-            }
+            Write-Host -NoNewline ($Finalout + ">")
+            return $Host.UI.ReadLine()
         }
         SHPrint "The theme failed to load"
     }
@@ -46,12 +48,12 @@ function SHStart{
     # Change scope when nessisary
     function SHAutostart
     {
-        Write-Host "Scripthub"
+        SHPrint "Scripthub"
         #Has to wait or color won't be green - No idea why !!Only in ISE!!
         Start-Sleep -mill 10
-        Write-Host "Version: $($version)" -Fore Green
-        Write-Host "Created by HelpMeGame with help from SCR33M" -fore Green
-        Write-Host "Forked by EpicMiner256" -fore Green
+        SHPrint "Version: $($version)"
+        SHPrint "Created by HelpMeGame with help from SCR33M"
+        SHPrint "Forked by EpicMiner256"
     }
 
     SHAutostart
