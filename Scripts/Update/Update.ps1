@@ -127,7 +127,7 @@ if ($Select -eq '1')
             & .\Update.ps1
         } elseif ($Select -eq '3')
             {
-            &..\ScriptHub.ps1
+            &..\..\ScriptHub.ps1
             } elseif ($Select -ne 1 -and 2 -and 3)
                 {
                 & .\Update.ps1

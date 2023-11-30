@@ -66,7 +66,7 @@ if ($Select -eq '1')
             & .\Scripts\Shortcuts.ps1
             } elseif($Select -eq '5')
                 {
-                & .\Scripts\Update.ps1 $($version)
+                & .\Scripts\Update\Update.ps1 $($version)
                 } elseif ($Select -eq 'Incognito')
                     {
                     & .\Scripts\Incognito.ps1
