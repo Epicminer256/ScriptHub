@@ -1,8 +1,8 @@
 # When forking or updating, change these settings
 $Version = "Prerelease v0.0.0"
+# ---
 
-# API Variables
-$SH_Path = $PSScriptRoot # Note, this may not have ScriptHub in it
+$SH_Path = $PSScriptRoot
 $SH_ThemePath = Join-Path -Path $SH_Path -ChildPath "Themes"
 $SH_DefaultTheme = Join-Path -Path $SH_ThemePath -ChildPath "default.psm1"
 $SH_Bin = Join-Path -Path $SH_Path -ChildPath "src"
@@ -42,10 +42,6 @@ function SHStart{
         SHPrint "The theme failed to load"
     }
     
-    
-
-    # Autostart Module
-    # Change scope when nessisary
     function SHAutostart
     {
         SHPrint "Scripthub Version: $($version)"
