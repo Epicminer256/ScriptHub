@@ -16,7 +16,7 @@ function SHInput
     {
         $Finalout.add($args[$i])
     }
-    Write-Host -NoNewline ($Finalout + ">")
+    Write-Host -NoNewline "${Finalout}> "
     return $Host.UI.ReadLine()
 }
 

@@ -3,13 +3,12 @@ $Version = "Prerelease v0.0.0"
 
 # API Variables
 $SH_Path = $PSScriptRoot # Note, this may not have ScriptHub in it
-$SH_DataPath = Join-Path -Path $SH_Path -ChildPath "Data"
-$SH_ThemePath = Join-Path -Path $SH_DataPath -ChildPath "Themes"
+$SH_ThemePath = Join-Path -Path $SH_Path -ChildPath "Themes"
 $SH_DefaultTheme = Join-Path -Path $SH_ThemePath -ChildPath "default.psm1"
-
-# Private Internal Variables
+$SH_Bin = Join-Path -Path $SH_Path -ChildPath "src"
 
 function SHStart{
+    $SH_Run = 1
     Try
     {
         Import-Module -Force $SH_DefaultTheme -Function SHPrint, SHInput
@@ -36,9 +35,10 @@ function SHStart{
             {
                 $Finalout.add($args[$i])
             }
-            Write-Host -NoNewline ($Finalout + ">")
+            Write-Host -NoNewline "${Finalout}> "
             return $Host.UI.ReadLine()
         }
+
         SHPrint "The theme failed to load"
     }
     
@@ -48,41 +48,62 @@ function SHStart{
     # Change scope when nessisary
     function SHAutostart
     {
-        SHPrint "Scripthub"
-        #Has to wait or color won't be green - No idea why !!Only in ISE!!
-        Start-Sleep -mill 10
-        SHPrint "Version: $($version)"
-        SHPrint "Created by HelpMeGame with help from SCR33M"
-        SHPrint "Forked by EpicMiner256"
+        SHPrint "Scripthub Version: $($version)"
+        SHPrint "Forked by EpicMiner256, originally created by HelpMeGame with help from SCR33M"
+        SHPrint "To Get Started, type `"help`"`n"
     }
 
     SHAutostart
 
-    Set-Location $SH_Path
-
-    echo '
-    Program is WIP, come back later for a working version
-    '
-
-    $Select = SHInput
-
-    if ($Select -eq '1')
+    function runPrompt()
     {
-        & .\Scripts\Background.ps1
+        $Select = SHInput "SH"
+        $Select = $Select.trim()
+        if($Select -eq "exit")
+        {
+            return 1
+        }
+        if($Select -eq "help")
+        {
+            SHPrint "All Programs:"
+            Get-ChildItem $SH_Bin | 
+            Foreach-Object {
+                if($_.Extension -eq ".ps1")
+                {
+                    SHPrint $("   "+$_.Basename)
+                    $Doc = Join-Path -Path $SH_Bin -ChildPath ($_.Basename+".desc")
+                    $Content = Get-Content -Path $Doc
+                    SHPrint $("   --> "+$Content)
+                }
+            }
+            return 0
+        }
+        $path = Join-Path -Path $SH_Bin -ChildPath $Select
+        if (Test-Path $path)
+        {
+            & $path
+            return 0
+        }
+        $path = Join-Path -Path $SH_Bin -ChildPath "${Select}.ps1"
+        if (Test-Path $path)
+        {
+            & $path
+            return 0
+        }
+        SHPrint "Command not Found"
+        return 0
     }
-    if($Select -eq '2')
-    {   
-        & .\Scripts\Darkmode.ps1
-    }
-    if($Select -eq '3')
+
+    while(1)
     {
-        & .\Scripts\Shortcuts.ps1
+        $returnVal = runPrompt
+        if($returnVal -eq 1)
+        {
+            break
+        }
     }
-    cls
-    SHPrint 'Error, Not A Valid Response.'
-    SHStart
+
+    SHPrint "Exiting...`n"
 }
 
-# Start
-cls
 SHStart
