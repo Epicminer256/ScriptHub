@@ -72,6 +72,10 @@ function SHStart{
                     SHPrint $("   --> "+$Content)
                 }
             }
+            SHPrint $("   help")
+            SHPrint $("   --> Lists programs and what they do")
+            SHPrint $("   exit")
+            SHPrint $("   --> Exits ScriptHub")
             return 0
         }
         $path = Join-Path -Path $SH_Bin -ChildPath $Select
