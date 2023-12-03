@@ -3,19 +3,22 @@ $Version = "Prerelease v0.0.0"
 # ---
 
 $SH_Path = $PSScriptRoot
-$SH_ThemePath = Join-Path -Path $SH_Path -ChildPath "Themes"
-$SH_DefaultTheme = Join-Path -Path $SH_ThemePath -ChildPath "default.psm1"
 $SH_Bin = Join-Path -Path $SH_Path -ChildPath "src"
+$SH_Cfg = Join-Path -Path $SH_Path -ChildPath "cfg"
+$SH_ThemePath = Join-Path -Path $SH_Path -ChildPath "Themes"
+$SH_ChosenTheme = Get-Content $(Join-Path -Path $SH_Cfg -ChildPath "chosentheme.txt")
+$SH_CurrentTheme = Join-Path -Path $SH_ThemePath -ChildPath $SH_ChosenTheme".psm1"
+
 
 function SHStart{
     $SH_Run = 1
     Try
     {
-        Import-Module -Force $SH_DefaultTheme -Function SHPrint, SHInput
+        Import-Module -Force $SH_CurrentTheme -Function SHPrint, SHInput
         get-command SHPrint -ErrorAction Stop | out-null
         get-command SHInput -ErrorAction Stop | out-null
     }
-    Catch
+    Catch [FileNotFoundException]
     {
         function SHPrint
         {
