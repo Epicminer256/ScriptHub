@@ -1,4 +1,5 @@
 $mode = 0
+SHTitle "Web Results In Search"
 function ask
 {
     SHPrint "Do you want to enable bing/cortana search results?"

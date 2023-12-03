@@ -1,7 +1,8 @@
 $mode = 0
+SHTitle "Dark Mode"
+SHPrint "Created By HelpMeGame and improved by EpicMiner256"
 function ask
 {
-    SHPrint "Created By HelpMeGame and improved by EpicMiner256"
     SHPrint "Light or Dark mode?"
     $input = SHInput "light/dark/exit"
     $input = $input.trim()

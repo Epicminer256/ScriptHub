@@ -14,11 +14,12 @@ function SHStart{
     $SH_Run = 1
     Try
     {
-        Import-Module -Force $SH_CurrentTheme -Function SHPrint, SHInput
+        Import-Module -Force $SH_CurrentTheme -Function SHPrint, SHInput, SHTitle
         get-command SHPrint -ErrorAction Stop | out-null
         get-command SHInput -ErrorAction Stop | out-null
+        get-command SHTitle -ErrorAction Stop | out-null
     }
-    Catch [FileNotFoundException]
+    Catch
     {
         function SHPrint
         {
@@ -41,13 +42,22 @@ function SHStart{
             Write-Host -NoNewline "${Finalout}> "
             return $Host.UI.ReadLine()
         }
-
+        function SHTitle
+        {
+            # A Long way of making a array
+            $Finalout = New-Object System.Collections.Generic.List[System.Object]
+            for ( $i = 0; $i -lt $args.count; $i++ )
+            {
+                $Finalout.add($args[$i])
+            }
+            Write-Host "--- ${Finalout} ---"
+        }
         SHPrint "The theme failed to load"
     }
     
     function SHAutostart
     {
-        SHPrint "Scripthub Version: $($version)"
+        SHTitle "Scripthub Version: $($version)"
         SHPrint "Forked by EpicMiner256, originally created by HelpMeGame with help from SCR33M"
         SHPrint "To Get Started, type `"help`"`n"
     }
